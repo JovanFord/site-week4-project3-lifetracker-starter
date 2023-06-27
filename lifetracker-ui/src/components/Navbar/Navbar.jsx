@@ -1,8 +1,22 @@
 import React from 'react'
 
 const Navbar = () => {
+
   return (
-    <div>Navbar</div>
+    <div>
+      <button>
+        sleepPage
+      </button>
+      <button>
+        nutritionPage
+      </button>
+      <button>
+        exercisePage
+      </button>
+      <button>
+        activityPage
+      </button>
+    </div>
   )
 }
 

@@ -353,6 +353,12 @@ Update the `App` component to manage authentication state:
   - [ ] Update the `LoginPage` component so that it accepts a `message` prop that is displayed in the login form - if it exists.
   - [ ] Make sure to protect the entire `ActivityPage` component route and the `NutritionPage` component route (along with any other private resource pages). Don't protect the `LandingPage` component or the `LoginPage` and `RegistrationPage` components, as they should be public.
 
+
+
+
+
+
+
 ### API
 
 Here are the pieces of functionality that should be built out for the backend:
