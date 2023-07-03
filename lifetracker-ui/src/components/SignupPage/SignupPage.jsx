@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom"
+import apiClient from "../../services/apiClient"
 
 const SignupPage = () => {
     const navigate = useNavigate()
@@ -9,11 +10,8 @@ const SignupPage = () => {
       firstName: "",
       lastName: "",
       email: "",
-      date: "",
       password: "",
       passwordConfirm: "",
-      location: "Local Clinic",
-      agreeToTerms: false,
     })
   
     const handleOnInputChange = (event) => {
@@ -55,9 +53,7 @@ const SignupPage = () => {
       }
   
       try {
-          const { data, error, message } = await apiClient.register ({
-          date: form.date,
-          location: form.location,
+          const { data } = await apiClient.register ({
           firstName: form.firstName,
           lastName: form.lastName,
           email: form.email,
@@ -66,10 +62,9 @@ const SignupPage = () => {
   
         if (data) {
           setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
-          localStorage.setItem("vaccine_hub_token", data.token)
+          localStorage.setItem("life_tracker_token", data.token)
   
           setIsLoading(false)
-          navigate("/portal")
         } else {
           setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
           setIsLoading(false)
