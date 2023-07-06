@@ -6,13 +6,24 @@ const morgan = require("morgan"); // Import the Morgan middleware for logging
 //importing the auth routes
 const authRoutes = require("./routes/authRoutes");
 
+// const { NotFoundError } = require("/utils/errors");
+
 // Middleware
 app.use(cors()); // Enable CORS middleware to handle cross-origin requests
 app.use(morgan("dev")); // Use Morgan middleware with 'dev' format for request logging
 app.use(express.json()); // Parse incoming requests with JSON payloads
 
 //enabling the /api/auth route - using the imported auth routes
-app.use("/api/auth", authRoutes);
+app.use("/auth", authRoutes);
+
+// app.use((req, res, next) => {
+//   return next (new NotFoundError)
+// })
+
+// app.use((err, req, res, next) => {
+//   const status = err.status || 500
+
+// }) 
 
 // Start the server
 const PORT = 3001;

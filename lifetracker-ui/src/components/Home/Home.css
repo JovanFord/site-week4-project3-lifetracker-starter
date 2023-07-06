@@ -8,3 +8,119 @@
 .cards img{
   height: 200px;
 }
+
+body {
+  background-color: #f9f5eb;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  text-align: center;
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #6d5143;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.cards a {
+  text-decoration: none;
+  margin: 10px;
+}
+
+.activity-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e9e1;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.exercise-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e9e1;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.sleep-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e9e1;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.nutrition-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e9e1;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.activity-btn:hover {
+  background-color: #efd1b9;
+}
+
+.exercise-btn:hover {
+  background-color: #efd1b9;
+}
+
+.sleep-btn:hover {
+  background-color: #efd1b9;
+}
+
+.nutrition-btn:hover {
+  background-color: #efd1b9;
+}
+
+span img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+
+span.activity-btn {
+  background-color: #fbe9e3;
+}
+
+span.nutrition-btn {
+  background-color: #fff1e3;
+}
+
+span.sleep-btn {
+  background-color: #eae9f1;
+}

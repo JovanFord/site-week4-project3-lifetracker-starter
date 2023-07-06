@@ -1,43 +1,105 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom"
+import apiClient from "../../services/apiClient"
+import "./LoginPage.css"
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState({})
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  })
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Perform login logic here, e.g., send form data to the server
-    console.log('Email:', email);
-    console.log('Password:', password);
-    // Reset form fields
-    setEmail('');
-    setPassword('');
-  };
+  const handleOnInputChange = (event) => {
+    if (event.target.name === "email") {
+      if (event.target.value.indexOf("@") === -1) {
+        setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
+      } else {
+        setErrors((e) => ({ ...e, email: null }))
+      }
+    }
+
+    setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
+  }
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setErrors((e) => ({ ...e, form: null }))
+
+    try {
+      const { data, error, message } = await apiClient.login(form)
+      if (error) {
+        setErrors((e) => ({ ...e, form: String(message) }))
+        setIsLoading(false)
+        return
+      }
+
+      if (data) {
+        // setAppState(data)
+        // setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
+        localStorage.setItem("vaccine_hub_token", data.token)
+        navigate("/activity")
+      } else {
+        setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
+        setIsLoading(false)
+      }
+    } catch (err) {
+      console.log(err)
+      const message = err?.response?.data?.error?.message
+      setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+      setIsLoading(false)
+    }
+  }
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
+    <div className="Login">
+      <div className="media">
+      </div>
+
+      <div className="card">
+        <h2>Login to the Portal</h2>
+
+        {Boolean(errors.form) && <span className="error">{errors.form}</span>}
         <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Login</button>
-      </form>
+
+        <div className="form">
+          <div className="input-field">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="user@gmail.com"
+              value={form.email}
+              onChange={handleOnInputChange}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
+          </div>
+
+          <div className="input-field">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleOnInputChange}
+            />
+            {errors.password && <span className="error">{errors.password}</span>}
+          </div>
+
+          <button className="btn" disabled={isLoading} onClick={handleOnSubmit}>
+            {isLoading ? "Loading..." : "Login"}
+          </button>
+        </div>
+
+        <div className="footer">
+          <p>
+            Don't have an account? Sign up <Link to="/register">here</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

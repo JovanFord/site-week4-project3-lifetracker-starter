@@ -33,7 +33,7 @@ class ApiClient {
   }
 
   async register(creds) {
-    return await this.request({ endpoint: `auth/register`, method: `POST`, data: creds })
+    return await this.request({ endpoint: `auth/signup`, method: `POST`, data: creds })
   }
 
   async login(creds) {

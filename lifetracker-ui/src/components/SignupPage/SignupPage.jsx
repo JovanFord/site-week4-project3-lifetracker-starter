@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import apiClient from "../../services/apiClient"
+import "./SignupPage.css"
 
 const SignupPage = () => {
-    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
@@ -61,7 +61,7 @@ const SignupPage = () => {
         })
   
         if (data) {
-          setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
+          // setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
           localStorage.setItem("life_tracker_token", data.token)
   
           setIsLoading(false)
@@ -78,9 +78,7 @@ const SignupPage = () => {
     }
 
   return (
-    <div className="Register">
-    <div className="media">
-    </div>
+    <div className="signup">
     <div className="card">
       <h2>Sign Up</h2>
 

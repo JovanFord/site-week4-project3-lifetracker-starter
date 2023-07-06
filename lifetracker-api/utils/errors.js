@@ -1,38 +1,45 @@
-// class ExpressError extends Error{
-//     constructor(message, status){
-//         super()
-//         this.message = message
-//         this.status = status
-//     }
-// }
+class ExpressError extends Error{
+    constructor(message, status){
+        super()
+        this.message = message
+        this.status = status
+    }
+}
 
-// class BadRequestError extends ExpressError{
-//     constructor(message = "Bad request"){
-//         super(message, 400)
-//     }
-// }
+class BadRequestError extends ExpressError{
+    constructor(message = "Bad request"){
+        super(message, 400)
+    }
+}
 
-// class UnauthorizedError extends ExpressError{
-//     constructor(message = "Bad request"){
-//         super(message, 401)
-//     }
-// }
+class UnauthorizedError extends ExpressError{
+    constructor(message = "Bad request"){
+        super(message, 401)
+    }
+}
 
-// class ForbiddenError extends ExpressError{
-//     constructor(message = "Bad request"){
-//         super(message, 403)
-//     }
-// }
+class ForbiddenError extends ExpressError{
+    constructor(message = "Bad request"){
+        super(message, 403)
+    }
+}
 
-// class NotFoundError extends ExpressError{
-//     constructor(message = "Not found! :("){
-//         super(message, 404)
-//     }
-// }
+class NotFoundError extends ExpressError{
+    constructor(message = "Not found! :("){
+        super(message, 404)
+    }
+}
 
-// module.exports = {
-//     BadRequestError,
-//     UnauthorizedError,
-//     ForbiddenError,
-//     NotFoundError,
-// }
+class UnprocessableEntityError extends ExpressError {
+    constructor(message = "Unprocessable Entity"){
+        super(message,422)
+    }
+}
+
+module.exports = {
+    BadRequestError,
+    UnauthorizedError,
+    ForbiddenError,
+    NotFoundError,
+    UnprocessableEntityError
+}

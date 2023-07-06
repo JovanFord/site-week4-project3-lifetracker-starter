@@ -1,9 +1,11 @@
 import React from 'react'
 import './Navbar.css'
 import { Link } from "react-router-dom"
+import { useState } from 'react'
 import logo from '../../assets/codepath.svg' 
 
-const Navbar = () => {
+const Navbar = ({signedIn}, logout) => {
+  
 
   return (
 
@@ -27,14 +29,25 @@ const Navbar = () => {
       <Link to="/Sleep" >
         <span className="nav-btn">Sleep</span>
       </Link>
+      { 
+        {signedIn} ? 
 
-      <Link to="/Login" >
-        <span className="nav-btn">Login</span>
-      </Link>
+        <div>
+          <Link to="/Login" >
+          <span className="nav-btn">Login</span>
+          </Link>
 
-      <Link to="/Signup" >
-        <span className="nav-btn">Signup</span>
-      </Link>
+          <Link to="/Signup" >
+            <span className="nav-btn">Signup</span>
+          </Link>
+        </div> : 
+        
+        <a className='logout' onClick={logout.logout}>
+          Logout
+        </a>
+      }
+
+      
 
     </div>
   )

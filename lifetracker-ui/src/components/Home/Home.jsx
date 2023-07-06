@@ -13,10 +13,11 @@ import sleep from '../../assets/alarm.jpg'
 const Home = () => {
   return (
     <div>
-      Home
       <div className='title'>
-
+        <h1> Life Tracker </h1> <br/>
+        <p> Taking control over your life </p>
       </div>
+      
       <div className='cards'>
         <Link to="/Exercise" >
           <span className="exercise-btn">

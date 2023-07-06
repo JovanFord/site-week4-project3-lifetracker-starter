@@ -1,4 +1,17 @@
 const { Pool } = require("pg")
+const {getDatabaseUri} = require("../config")
+require("colors")
+
+const db = new Pool ({connectionString: getDatabaseUri() })
+
+
+db.connect((err) => {
+  if(err){
+    console.log("connection error".red, err.stack)
+  } else {
+    console.log("connection sucess to db".blue)
+  }
+})
 
 const sqlScript = `
 CREATE TABLE IF NOT EXISTS users(
@@ -15,7 +28,7 @@ const pool = new Pool({
   password: "postgres",
   host: "localhost",
   port: 5432,
-  database: "life_tracker",
+  database: "lifetracker",
 });
 
 //Execute the SQL script
@@ -28,5 +41,5 @@ pool
     console.error("Error creating table", error);
   });
 
-//export the pool to be used in a different file
-module.exports = pool;
+// export the pool to be used in a different file
+module.exports = db;

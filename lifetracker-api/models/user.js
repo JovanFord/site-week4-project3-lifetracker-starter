@@ -1,7 +1,8 @@
 "use strict"
 
-const db = require("../db")
+const db = require("../db/pool")
 const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken')
 const { BadRequestError, UnauthorizedError } = require("../utils/errors")
 const { validateFields } = require("../utils/validate")
 
@@ -22,8 +23,6 @@ class User {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      location: user.location,
-      date: user.date,
     }
   }
 
@@ -39,7 +38,7 @@ class User {
     const { email, password } = creds
     const requiredCreds = ["email", "password"]
     try {
-      validateFields({ required: requiredCreds, obj: creds, location: "user authentication" })
+      validateFields({ required: requiredCreds, obj: creds})
     } catch (err) {
       throw err
     }
@@ -66,18 +65,18 @@ class User {
    **/
 
   static async register(creds) {
-    const { email, password, firstName, lastName, location, date } = creds
-    const requiredCreds = ["email", "password", "firstName", "lastName", "location", "date"]
+    const { email, password, firstName, lastName} = creds
+    const requiredCreds = ["email", "password", "firstName", "lastName"]
     try {
-      validateFields({ required: requiredCreds, obj: creds, location: "user registration" })
+      validateFields({ required: requiredCreds, obj: creds, location: "user registration"})
     } catch (err) {
       throw err
     }
 
-    const existingUserWithEmail = await User.fetchUserByEmail(email)
-    if (existingUserWithEmail) {
-      throw new BadRequestError(`Duplicate email: ${email}`)
-    }
+    // const existingUserWithEmail = await User.fetchUserByEmail(email)
+    // if (existingUserWithEmail) {
+    //   throw new BadRequestError(`Duplicate email: ${email}`)
+    // }
 
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR)
     const normalizedEmail = email.toLowerCase()
@@ -87,19 +86,15 @@ class User {
           password,
           first_name,
           last_name,
-          email,
-          location,
-          date
+          email
         )
-        VALUES ($1, $2, $3, $4, $5, $6)
+        VALUES ($1, $2, $3, $4)
         RETURNING id,
                   email,            
                   first_name AS "firstName", 
-                  last_name AS "lastName",
-                  location,
-                  date
+                  last_name AS "lastName"
                   `,
-      [hashedPassword, firstName, lastName, normalizedEmail, location, date]
+      [hashedPassword, firstName, lastName, normalizedEmail]
     )
 
     const user = result.rows[0]
@@ -113,24 +108,22 @@ class User {
    * @param {String} email
    * @returns user
    */
-  static async fetchUserByEmail(email) {
-    const result = await db.query(
-      `SELECT id,
-              email, 
-              password,
-              first_name AS "firstName",
-              last_name AS "lastName",
-              location,
-              date              
-           FROM users
-           WHERE email = $1`,
-      [email.toLowerCase()]
-    )
+  // static async fetchUserByEmail(email) {
+  //   const result = await db.query(
+  //     `SELECT id,
+  //             email, 
+  //             password,
+  //             first_name AS "firstName",
+  //             last_name AS "lastName",       
+  //          FROM users
+  //          WHERE email = $1`,
+  //     [email.toLowerCase()]
+  //   )
 
-    const user = result.rows[0]
+  //   const user = result.rows[0]
 
-    return user
-  }
+  //   return user
+  // }
 
   /**
    * Fetch a user in the database by email
@@ -144,9 +137,7 @@ class User {
               email,    
               password,
               first_name AS "firstName",
-              last_name AS "lastName",
-              location,
-              date              
+              last_name AS "lastName",     
            FROM users
            WHERE id = $1`,
       [userId]
