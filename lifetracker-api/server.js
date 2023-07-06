@@ -16,14 +16,14 @@ app.use(express.json()); // Parse incoming requests with JSON payloads
 //enabling the /api/auth route - using the imported auth routes
 app.use("/auth", authRoutes);
 
-// app.use((req, res, next) => {
-//   return next (new NotFoundError)
-// })
+app.use((req, res, next) => {
+  return next (new NotFoundError)
+})
 
-// app.use((err, req, res, next) => {
-//   const status = err.status || 500
+app.use((err, req, res, next) => {
+  const status = err.status || 500
 
-// }) 
+}) 
 
 // Start the server
 const PORT = 3001;

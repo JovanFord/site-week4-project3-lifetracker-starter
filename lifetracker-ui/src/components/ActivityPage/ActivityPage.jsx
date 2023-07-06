@@ -1,8 +1,15 @@
 import React from 'react'
+import "./ActivityPage.css"
 
-const Activity = () => {
+const Activity = ({signedIn, setSignedIn}) => {
   return (
-    <div>ActivityPage</div>
+    <div>
+      { signedIn ?
+      <div>Content</div> : 
+      
+      <div>Please Sign in to see content</div>
+      }
+    </div>
   )
 }
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import apiClient from "../../services/apiClient"
 import "./LoginPage.css"
 
-const LoginPage = () => {
+const LoginPage = ({signedIn, setSignedIn}) => { 
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
@@ -24,6 +25,7 @@ const LoginPage = () => {
   }
 
   const handleOnSubmit = async (e) => {
+    setSignedIn(true)
     e.preventDefault()
     setIsLoading(true)
     setErrors((e) => ({ ...e, form: null }))
@@ -39,7 +41,7 @@ const LoginPage = () => {
       if (data) {
         // setAppState(data)
         // setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
-        localStorage.setItem("vaccine_hub_token", data.token)
+        localStorage.setItem("lifetracker_token", data.token)
         navigate("/activity")
       } else {
         setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
@@ -52,7 +54,7 @@ const LoginPage = () => {
       setIsLoading(false)
     }
   }
-
+  console.log(signedIn)
   return (
     <div className="Login">
       <div className="media">

@@ -108,22 +108,22 @@ class User {
    * @param {String} email
    * @returns user
    */
-  // static async fetchUserByEmail(email) {
-  //   const result = await db.query(
-  //     `SELECT id,
-  //             email, 
-  //             password,
-  //             first_name AS "firstName",
-  //             last_name AS "lastName",       
-  //          FROM users
-  //          WHERE email = $1`,
-  //     [email.toLowerCase()]
-  //   )
+  static async fetchUserByEmail(email) {
+    const result = await db.query(
+      `SELECT id,
+              email, 
+              password,
+              first_name AS "firstName",
+              last_name AS "lastName"       
+           FROM users
+           WHERE email = $1`,
+      [email.toLowerCase()]
+    )
 
-  //   const user = result.rows[0]
+    const user = result.rows[0]
 
-  //   return user
-  // }
+    return user
+  }
 
   /**
    * Fetch a user in the database by email
@@ -137,7 +137,7 @@ class User {
               email,    
               password,
               first_name AS "firstName",
-              last_name AS "lastName",     
+              last_name AS "lastName"     
            FROM users
            WHERE id = $1`,
       [userId]

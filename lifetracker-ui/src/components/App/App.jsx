@@ -13,21 +13,19 @@ import SignupPage from '../SignupPage/SignupPage'
 function App() { 
   const [signedIn, setSignedIn] = useState(false)
 
-  const logout = () => {
-    setSignedIn(true)
-  }
+  
   return (
     <div>
       
       <BrowserRouter>
-        <Navbar signedIn={signedIn} logout={logout}/>
+        <Navbar signedIn={signedIn} setSignedIn={setSignedIn}/>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/exercise' element={<ExercisePage/>} />
-          <Route path='/activity' element={<ActivityPage/>} />
-          <Route path='/nutrition' element={<NutritionPage/>} />
-          <Route path='/sleep' element={<SleepPage/>} />
-          <Route path='/login' element={<LoginPage/>} />
+          <Route path='/exercise' element={<ExercisePage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
+          <Route path='/activity' element={<ActivityPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
+          <Route path='/nutrition' element={<NutritionPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
+          <Route path='/sleep' element={<SleepPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
+          <Route path='/login' element={<LoginPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
           <Route path='/signup' element={<SignupPage/>} />
         </Routes>
       </BrowserRouter>

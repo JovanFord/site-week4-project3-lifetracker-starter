@@ -1,8 +1,15 @@
 import React from 'react'
+import "./NutritionPage.css"
 
-const NutritionPage = () => {
+const NutritionPage = ({signedIn, setSignedIn}) => {
   return (
-    <div>NutritionPage</div>
+    <div>
+      { signedIn ?
+      <div>Content</div> : 
+      
+      <div>Please Sign in to see content</div>
+      }
+    </div>
   )
 }
 
