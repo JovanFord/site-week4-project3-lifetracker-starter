@@ -35,10 +35,10 @@
   color:aquamarine;
 }
 
-button{
+.logout{
   background: none;
   border: none;
 }
- button:hover{
+.logout:hover{
   cursor: pointer;
  }

@@ -4,3 +4,7 @@
 .SleepPage .button button {
   flex: 1;
 }
+
+.sleep-title{
+  text-align: center;
+}

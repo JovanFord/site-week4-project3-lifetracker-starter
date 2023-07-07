@@ -21,8 +21,8 @@ function App() {
         <Navbar signedIn={signedIn} setSignedIn={setSignedIn}/>
         <Routes>
           <Route path='/' element={<Home/>} />
-          <Route path='/exercise' element={<ExercisePage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
           <Route path='/activity' element={<ActivityPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
+          <Route path='/exercise' element={<ExercisePage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
           <Route path='/nutrition' element={<NutritionPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
           <Route path='/sleep' element={<SleepPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />
           <Route path='/login' element={<LoginPage signedIn={signedIn} setSignedIn={setSignedIn}/>} />

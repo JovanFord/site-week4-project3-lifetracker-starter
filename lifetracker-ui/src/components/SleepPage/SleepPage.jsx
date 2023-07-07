@@ -4,6 +4,7 @@ import "./SleepPage.css"
 const SleepPage = ({signedIn, setSignedIn}) => {
   return (
     <div>
+      <h1 className='sleep-title'> Sleep </h1>
       { signedIn ?
       <div>Content</div> : 
       

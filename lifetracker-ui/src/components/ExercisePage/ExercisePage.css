@@ -4,3 +4,7 @@
 .ExercisePage .button button {
   flex: 1;
 }
+
+.exercise-title{
+  text-align: center;
+}

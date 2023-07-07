@@ -14,6 +14,20 @@ router.post("/signup", async (req, res) => {
   //password
   try {
     const user = await User.register(req.body);
+    // Generate and sign JWT token
+    const token = jwt.sign(
+      { userId: result.rows[0].id, userName: result.rows[0].name },
+      "my-very-secret-key-not-hidden",
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.status(201).json({
+      message: "User registered successfully",
+      token: token,
+      user: result.rows[0],
+    });
     return res.status(201).json({ user: user });
   } catch (error) {
     console.error("Error registering user: ", error);
@@ -25,10 +39,29 @@ router.post("/signup", async (req, res) => {
 router.post("/login", async function (req, res, next) {
   try {
     const user = await User.authenticate(req.body)
+    const token = jwt.sign(
+      { userId: user.id, userName: user.name },
+      "secret-key",
+      {
+        expiresIn: "1h"
+      }
+    );
+
+    res.status(200).json({
+      message: "Login successful",
+      token: token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    });
     return res.status(200).json({ user })
   } catch (err) {
     next(err)
   }
 })
+
+
 
 module.exports = router;

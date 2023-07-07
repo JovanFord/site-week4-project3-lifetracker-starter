@@ -16,13 +16,13 @@ const Navbar = ({signedIn, setSignedIn}) => {
         <Link to="/" >
           <img className='logo' src={logo}/>
         </Link>
-      
-        <Link to="/Exercise" >
-          <span className="nav-btn">Exercise</span>
-        </Link>
 
         <Link to="/Activity" >
           <span className="nav-btn">Activity</span>
+        </Link>
+      
+        <Link to="/Exercise" >
+          <span className="nav-btn">Exercise</span>
         </Link>
 
         <Link to="/Nutrition" >
@@ -44,13 +44,13 @@ const Navbar = ({signedIn, setSignedIn}) => {
         <Link to="/" >
           <img className='logo' src={logo}/>
         </Link>
-      
-        <Link to="/Exercise" >
-          <span className="nav-btn">Exercise</span>
-        </Link>
 
         <Link to="/Activity" >
           <span className="nav-btn">Activity</span>
+        </Link>
+      
+        <Link to="/Exercise" >
+          <span className="nav-btn">Exercise</span>
         </Link>
 
         <Link to="/Nutrition" >

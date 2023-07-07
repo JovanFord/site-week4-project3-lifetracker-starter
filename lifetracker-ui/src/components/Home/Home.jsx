@@ -15,17 +15,18 @@ const Home = () => {
       </div>
       
       <div className='cards'>
-        <Link to="/Exercise" >
-          <span className="exercise-btn">
-            Exercise
-            <img src={exercise}/>
-          </span>
-        </Link>
 
         <Link to="/Activity" >
           <span className="activity-btn">
             Activity
             <img src={activity}/>
+          </span>
+        </Link>
+
+        <Link to="/Exercise" >
+          <span className="exercise-btn">
+            Exercise
+            <img src={exercise}/>
           </span>
         </Link>
 
