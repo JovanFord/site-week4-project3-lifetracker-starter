@@ -5,6 +5,7 @@ import "./LoginPage.css"
 
 const LoginPage = ({signedIn, setSignedIn}) => { 
   const navigate = useNavigate()
+  const [appState, setAppState] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState({})
   const [form, setForm] = useState({
@@ -39,8 +40,7 @@ const LoginPage = ({signedIn, setSignedIn}) => {
       }
 
       if (data) {
-        // setAppState(data)
-        // setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
+        setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
         localStorage.setItem("lifetracker_token", data.token)
         navigate("/activity")
       } else {

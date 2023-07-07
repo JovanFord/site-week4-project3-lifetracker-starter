@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
     const {name, category, quantity, calories} = req.body;
 
     const query =
-      "INSERT INTO cars (name, category, quantity, calories) VALUES ($1, $2, $3, $4) RETURNING *";
+      "INSERT INTO nutrition (name, category, quantity, calories) VALUES ($1, $2, $3, $4) RETURNING *";
     const values = [name, category, quantity, calories];
 
     const result = await pool.query(query, values);
