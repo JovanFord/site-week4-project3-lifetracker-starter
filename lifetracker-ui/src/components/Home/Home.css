@@ -47,9 +47,9 @@ h1 {
   background-color: #f2e9e1;
   border-radius: 8px;
   padding: 20px;
-  width: 200px;
-  height: 200px;
-  transition: background-color 0.3s ease;
+  width: 250px;
+  height: 250px;
+  transition: background-color 0.4s ease;
 }
 
 .exercise-btn {
@@ -60,9 +60,9 @@ h1 {
   background-color: #f2e9e1;
   border-radius: 8px;
   padding: 20px;
-  width: 200px;
-  height: 200px;
-  transition: background-color 0.3s ease;
+  width: 250px;
+  height: 250px;
+  transition: background-color 0.4s ease;
 }
 
 .sleep-btn {
@@ -73,9 +73,9 @@ h1 {
   background-color: #f2e9e1;
   border-radius: 8px;
   padding: 20px;
-  width: 200px;
-  height: 200px;
-  transition: background-color 0.3s ease;
+  width: 250px;
+  height: 250px;
+  transition: background-color 0.4s ease;
 }
 
 .nutrition-btn {
@@ -86,9 +86,9 @@ h1 {
   background-color: #f2e9e1;
   border-radius: 8px;
   padding: 20px;
-  width: 200px;
-  height: 200px;
-  transition: background-color 0.3s ease;
+  width: 250px;
+  height: 250px;
+  transition: background-color 0.4s ease;
 }
 
 .activity-btn:hover {
@@ -108,8 +108,8 @@ h1 {
 }
 
 span img {
-  width: 120px;
-  height: 120px;
+  width: 185px;
+  height: 185px;
   margin-bottom: 10px;
 }
 

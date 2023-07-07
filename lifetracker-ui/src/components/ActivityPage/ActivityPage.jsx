@@ -21,7 +21,7 @@ const Activity = ({signedIn, setSignedIn}) => {
   return (
     <div>
       { signedIn ?
-      <div>
+      <div className='welcome-title'>
         Welcome
       </div> : 
       
