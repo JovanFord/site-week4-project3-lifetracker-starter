@@ -37,6 +37,7 @@ function App() {
     setSignedIn(false)
     setUser({})
     setError(null)
+    window.location.href = "/"
   }
 
   

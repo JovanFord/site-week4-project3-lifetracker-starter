@@ -7,6 +7,9 @@ const security = require("./middleware/security")
 //importing the auth routes
 const authRoutes = require("./routes/authRoutes");
 
+//importing the nutrition routes
+const nutritionRoutes = require("./routes/nutritionRoutes");
+
 // const { NotFoundError } = require("/utils/errors");
 
 // Middleware
@@ -15,8 +18,11 @@ app.use(morgan("dev")); // Use Morgan middleware with 'dev' format for request l
 app.use(express.json()); // Parse incoming requests with JSON payloads
 app.use(security.extractUserFromJwt) // check if token exist in auth header
 
-//enabling the /api/auth route - using the imported auth routes
+//enabling the /auth route - using the imported auth routes
 app.use("/auth", authRoutes);
+
+//enabling the /nutrition route - using the imported nutrition routes
+app.use("/nutrition", nutritionRoutes);
 
 app.use((req, res, next) => {
   return next (new NotFoundError)

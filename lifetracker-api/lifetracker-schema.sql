@@ -12,6 +12,7 @@ CREATE TABLE nutrition (
   id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
   calories INT NOT NULL,
   image_url VARCHAR(255),
   user_id INT,
@@ -43,8 +44,8 @@ CREATE TABLE exercise (
   id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
-  calories INT NOT NULL,
-  image_url VARCHAR(255),
+  intensity INT NOT NULL,
+  duration INT NOT NULL,
   user_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

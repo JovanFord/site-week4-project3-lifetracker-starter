@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS users(
         email VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL
     );
+    CREATE TABLE nutrition (
+      id INT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      category VARCHAR(255) NOT NULL,
+      quantity INT NOT NULL,
+      calories INT NOT NULL
+    );
 `;
 
 //DB information to connect
