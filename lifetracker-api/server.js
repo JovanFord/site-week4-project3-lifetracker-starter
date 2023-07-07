@@ -2,7 +2,7 @@ const express = require("express"); //importing express
 const app = express(); //calling using express in the app as a function
 const cors = require("cors"); //imorting cors
 const morgan = require("morgan"); // Import the Morgan middleware for logging
-const security = require(".middleware/security")
+const security = require("./middleware/security")
 
 //importing the auth routes
 const authRoutes = require("./routes/authRoutes");
