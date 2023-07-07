@@ -38,3 +38,8 @@ const requireAuthenticatedUser = (req, res, next) => {
         return next(error)
     }
 }
+
+module.exports = {
+    requireAuthenticatedUser,
+    extractUserFromJwt
+}
