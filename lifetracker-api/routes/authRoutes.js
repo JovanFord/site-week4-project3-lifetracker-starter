@@ -10,14 +10,13 @@ const pool = require("../db/pool");
 
 //Registration route
 router.post("/signup", async (req, res) => {
-  const { username, password, first_name, last_name, email } = req.body;
   //password
   try {
     const user = await User.register(req.body);
     // Generate and sign JWT token
     const token = jwt.sign(
       { userId: result.rows[0].id, userName: result.rows[0].name },
-      "my-very-secret-key-not-hidden",
+      "secret-key",
       {
         expiresIn: "1h",
       }

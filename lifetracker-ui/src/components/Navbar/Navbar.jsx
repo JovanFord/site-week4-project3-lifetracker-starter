@@ -3,12 +3,8 @@ import './Navbar.css'
 import { Link } from "react-router-dom"
 import logo from '../../assets/codepath.svg' 
 
-const Navbar = ({signedIn, setSignedIn}) => {
+const Navbar = ({signedIn, setSignedIn, handleLogout}) => {
 
-  const logout = () => {
-    setSignedIn(false)
-    console.log(signedIn)
-  }
 
   if (signedIn){
     return (
@@ -33,7 +29,7 @@ const Navbar = ({signedIn, setSignedIn}) => {
           <span className="nav-btn">Sleep</span>
         </Link>
 
-        <button className='logout' onClick={logout}>
+        <button className='logout' onClick={handleLogout}>
             Logout
         </button>
     </div>

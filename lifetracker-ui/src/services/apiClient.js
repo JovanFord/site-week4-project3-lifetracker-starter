@@ -4,13 +4,15 @@ class ApiClient {
   constructor(remoteHostUrl) {
     this.token = null
     this.remoteHostUrl = remoteHostUrl || "http://localhost:3001"
+    this.tokenName = "lifetracker_token"
   }
 
   setToken(token) {
     this.token = token
+    localStorage.setItem(this.tokenName, token)
   }
 
-  async request({ endpoint, method, data = {} }) {
+  async request({ endpoint, method = 'GET', data = {} }) {
     const url = `${this.remoteHostUrl}/${endpoint}`
     console.debug("API Call:", endpoint, data, method)
     const params = method === "get" ? data : {}
@@ -32,12 +34,21 @@ class ApiClient {
     }
   }
 
+  async fetchUserFromToken(){
+    return await this.request({ endpoint: `auth/me`, method: `GET`}) 
+  }
+
   async register(creds) {
     return await this.request({ endpoint: `auth/signup`, method: `POST`, data: creds })
   }
 
   async login(creds) {
     return await this.request({ endpoint: `auth/login`, method: `POST`, data: creds })
+  }
+
+  async logout(){
+    this.setToken(null)
+    localStorage.setItem(this.tokenName, "")
   }
 }
 

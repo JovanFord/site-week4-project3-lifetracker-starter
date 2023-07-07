@@ -1,7 +1,23 @@
 import React from 'react'
 import "./ActivityPage.css"
+import { useState, useEffect } from 'react'
+import apiClient from '../../services/apiClient'
 
 const Activity = ({signedIn, setSignedIn}) => {
+  useEffect( () => {
+    const fetchUser = async () => {
+      const {data, error} = await apiClient.fetchUserFromToken()
+      if(data) setUser(data.user)
+      if(error) setError(error)
+    }
+
+    const token = localStorage.getItem("lifetracker_token")
+    if(token){
+      apiClient.setToken(token)
+      fetchUser()
+    }
+    
+  })
   return (
     <div>
       { signedIn ?
