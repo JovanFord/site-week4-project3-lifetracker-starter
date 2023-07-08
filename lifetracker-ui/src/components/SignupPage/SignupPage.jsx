@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import apiClient from "../../services/apiClient"
 import "./SignupPage.css"
 
 const SignupPage = () => {
+  const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
@@ -75,6 +76,7 @@ const SignupPage = () => {
         setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
         setIsLoading(false)
       }
+      navigate("/login")
     }
 
   return (

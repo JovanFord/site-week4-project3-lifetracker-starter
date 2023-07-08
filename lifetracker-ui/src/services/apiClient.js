@@ -46,10 +46,19 @@ class ApiClient {
     return await this.request({ endpoint: `auth/login`, method: `POST`, data: creds })
   }
 
+  async addFood(creds){
+    console.log("food")
+    return await this.request({ endpoint: `nutrition`, method: `POST`, data: creds }) 
+  }
+
+  async getFood(creds){
+    return await this.request({ endpoint: `auth/me`, method: `GET`}) 
+  }
+
   async logout(){
     this.setToken(null)
     localStorage.setItem(this.tokenName, "")
   }
 }
 
-export default new ApiClient(import.meta.env.VITE_REMOTE_HOST_URL)
+export default new ApiClient('http://localhost:3001')

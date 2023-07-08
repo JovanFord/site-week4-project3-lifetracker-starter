@@ -13,20 +13,22 @@ db.connect((err) => {
   }
 })
 
-const sqlScript = `
+const userSqlScript = `
 CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
         password VARCHAR(255) NOT NULL
     );
-    CREATE TABLE nutrition (
-      id INT PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
-      category VARCHAR(255) NOT NULL,
-      quantity INT NOT NULL,
-      calories INT NOT NULL
-    );
+`;
+
+const nutritionSqlScript = `
+CREATE TABLE IF NOT EXISTS nutrition (
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  quantity INT NOT NULL,
+  calories INT NOT NULL
+  );
 `;
 
 //DB information to connect
@@ -38,11 +40,21 @@ const pool = new Pool({
   database: "lifetracker",
 });
 
-//Execute the SQL script
+//Execute the user SQL script
 pool
-  .query(sqlScript)
+  .query(userSqlScript)
   .then(() => {
-    console.log("Table create query successfully");
+    console.log("User table create query successfully");
+  })
+  .catch((error) => {
+    console.error("Error creating table", error);
+  });
+
+//Execute the nutrition SQL script
+pool
+  .query(nutritionSqlScript)
+  .then(() => {
+    console.log("Nutrition table create query successfully");
   })
   .catch((error) => {
     console.error("Error creating table", error);

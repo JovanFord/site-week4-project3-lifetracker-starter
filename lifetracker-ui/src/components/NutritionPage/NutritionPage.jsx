@@ -1,23 +1,51 @@
 import React, { useState } from 'react';
 import './NutritionPage.css';
+import apiClient from '../../services/apiClient';
 
-const NutritionPage = ({ signedIn, setSignedIn }) => {
+const NutritionPage = ({ signedIn, setSignedIn, nutritionData, setNutritionData }) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
   const [calories, setCalories] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [form, setForm] = useState({
+    name: '',
+    category: '',
+    quantity: '',
+    calories: '',
+  });
 
-  const handleSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    // You can access the form values here (name, category, quantity, calories)
-    console.log('Form submitted:', name, category, quantity, calories);
-    // Clear form fields
-    setName('');
-    setCategory('');
-    setQuantity('');
-    setCalories('');
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await apiClient.addFood({
+        name: name,
+        category: category,
+        quantity: parseInt(quantity),
+        calories: parseInt(calories),
+      });
+
+      if (data) {
+        console.log('Food added successfully:', data);
+        setForm({
+          name: '',
+          category: '',
+          quantity: '',
+          calories: '',
+        });
+      }
+
+      setNutritionData(data);
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
+      setErrors(err.response.data.errors);
+      setIsLoading(false);
+    }
   };
 
   const openPopup = () => {
@@ -37,14 +65,39 @@ const NutritionPage = ({ signedIn, setSignedIn }) => {
             <button className='add-more-btn' onClick={openPopup}>
               Add Food
             </button>
+            <div>
+              {nutritionData.map((item) => (
+                <div className='nutri-card'>
+                  <div className='split-nutri'>
+                    <div className='content'>
+                    <p className='food-name'>{item.name}</p>
+                      <div className='split-nutri'>
+                        <div className='nutri-calories-div'>
+                          <p className='nutri-calories'>calories</p>
+                          <p className='nutri-data nutri-calories-data'>
+                            {item.calories}
+                          </p>
+                        </div>
+                        <div className='nutri-quantity-div'>
+                          <p className='nutri-quantity'>quantity</p>
+                          <p className='nutri-data nutri-quantity-data'>
+                            {item.quantity}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
             {isOpen && (
               <div className='popup'>
                 <div className='popup-content'>
-                <button className='close-btn' onClick={closePopup}>
-                  X
-                </button>
+                  <button className='close-btn' onClick={closePopup}>
+                    X
+                  </button>
                   <h2>Record Nutrition</h2>
-                  <form className='form-container' onSubmit={handleSubmit}>
+                  <form className='form-container' onSubmit={handleOnSubmit}>
                     <div className='form-field'>
                       <label className='label' htmlFor='name'>
                         Name:

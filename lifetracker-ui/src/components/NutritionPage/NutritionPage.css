@@ -114,3 +114,43 @@
 .submit-btn:hover {
   background-color: #45a049;
 }
+
+.nutri-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.split-nutri {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-name {
+  font-weight: bold;
+}
+
+.nutri-calories-div,
+.nutri-quantity-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutri-calories,
+.nutri-quantity {
+  font-size: 12px;
+}
+
+.nutri-data {
+  font-size: 16px;
+  font-weight: bold;
+}
+

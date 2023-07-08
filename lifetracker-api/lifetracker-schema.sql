@@ -9,12 +9,10 @@ CREATE TABLE users (
 );
 
 CREATE TABLE nutrition (
-  id INT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   quantity INT NOT NULL,
   calories INT NOT NULL,
-  image_url VARCHAR(255),
   user_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -24,7 +22,6 @@ CREATE TABLE activitiy (
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   calories INT NOT NULL,
-  image_url VARCHAR(255),
   user_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -35,7 +32,6 @@ CREATE TABLE sleep (
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   calories INT NOT NULL,
-  image_url VARCHAR(255),
   user_id INT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

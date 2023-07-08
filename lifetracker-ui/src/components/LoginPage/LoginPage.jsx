@@ -30,11 +30,12 @@ const LoginPage = ({signedIn, setSignedIn}) => {
     e.preventDefault()
     setIsLoading(true)
     setErrors((e) => ({ ...e, form: null }))
+    setIsLoading(false)
 
     try {
-      const { data, error, message } = await apiClient.login(form)
+      const { data, error, message } = await apiClient.login({email: form.email, password: form.password})
       if (error) {
-        setErrors((e) => ({ ...e, form: String(message) }))
+        setErrors((e) => ({ ...e, form: error }))
         setIsLoading(false)
         return
       }
@@ -43,6 +44,7 @@ const LoginPage = ({signedIn, setSignedIn}) => {
         setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
         localStorage.setItem("lifetracker_token", data.token)
         navigate("/activity")
+        setIsLoading(false)
       } else {
         setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
         setIsLoading(false)
@@ -54,7 +56,6 @@ const LoginPage = ({signedIn, setSignedIn}) => {
       setIsLoading(false)
     }
   }
-  console.log(signedIn)
   return (
     <div className="Login">
       <div className="media">
