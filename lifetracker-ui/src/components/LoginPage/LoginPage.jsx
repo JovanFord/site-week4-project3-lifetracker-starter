@@ -44,7 +44,6 @@ const LoginPage = ({signedIn, setSignedIn}) => {
         setAppState((s) => ({ ...s, user: data.user, isAuthenticated: true }))
         localStorage.setItem("lifetracker_token", data.token)
         navigate("/activity")
-        setIsLoading(false)
       } else {
         setErrors((e) => ({ ...e, form: "Invalid username/password combination" }))
         setIsLoading(false)
