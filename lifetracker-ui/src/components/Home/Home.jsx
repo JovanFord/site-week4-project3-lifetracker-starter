@@ -5,12 +5,14 @@ import exercise from '../../assets/athlete.jpg'
 import activity from '../../assets/calendar.jpg' 
 import nutrition from '../../assets/food.jpg' 
 import sleep from '../../assets/alarm.jpg' 
+import tracker from '../../assets/tracker.jpg'
 
 const Home = () => {
   return (
     <div>
       <div className='title'>
         <h1> Life Tracker </h1> <br/>
+        <img className='tracker' src={tracker}/>
         <p> Taking control over your life </p>
       </div>
       

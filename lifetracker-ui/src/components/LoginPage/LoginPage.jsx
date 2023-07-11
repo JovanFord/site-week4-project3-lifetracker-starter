@@ -31,12 +31,14 @@ const LoginPage = ({signedIn, setSignedIn}) => {
     setIsLoading(true)
     setErrors((e) => ({ ...e, form: null }))
     setIsLoading(false)
+    navigate("/activity")
 
     try {
       const { data, error, message } = await apiClient.login({email: form.email, password: form.password})
       if (error) {
         setErrors((e) => ({ ...e, form: error }))
         setIsLoading(false)
+        navigate("/activity")
         return
       }
 

@@ -9,6 +9,10 @@
   height: 200px;
 }
 
+.tracker{
+  width: 300px;
+}
+
 body {
   background-color: #f9f5eb;
   font-family: Arial, sans-serif;

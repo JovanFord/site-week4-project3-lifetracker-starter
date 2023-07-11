@@ -47,7 +47,6 @@ class ApiClient {
   }
 
   async addFood(creds){
-    console.log("food")
     return await this.request({ endpoint: `nutrition`, method: `POST`, data: creds }) 
   }
 

@@ -3,6 +3,8 @@
 ## Video
 https://www.loom.com/share/651a923533914ed59c770a5bcf034c44?sid=3d5c4f5f-7b4d-4082-9869-fff9daf68f40
 
+added the hero image and made it where the user is taken to the activity page upon login - https://www.loom.com/share/7119a82296e94edaa133eeb9fc84401a?sid=fd264473-1c6a-4a89-aa56-962a1f506c25
+
 ## Overview
 
 > Data is the new oil - Clive Humbly

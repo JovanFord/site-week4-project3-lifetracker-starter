@@ -18,11 +18,12 @@ const Activity = ({signedIn, setSignedIn}) => {
     }
     
   })
+  
   return (
     <div>
       { signedIn ?
       <div className='welcome-title'>
-        Welcome
+         <h1 className='activity-title'> Activities </h1>
       </div> : 
       
       <div>Please Sign in to see content</div>
